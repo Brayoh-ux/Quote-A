@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <h1>Quote Marja</h1>
+  <hr>
+  <div class="row">
+      <div class="col-md-6">
+          <ul>
+              <div *ngFor='let quote of quotes; let i = index'>
+                  <li>
+                      Date created : {{quote.time|date|uppercase}} <br>
+                    Posted by : {{quote.poster}} <br>
+                    <button (click)='toggleDetails(i)' >Details..</button>
+                    <app-quote-details *ngIf='quote.showAuthor' [quote]='quote'
+                     (isComplete) = 'deleteQuote($event,i)'></app-quote-details>
+
+                </li>
+              </div>
+          </ul>
+      </div>
+      <div class="col-md-6">
+          <app-quote-form (addQuote)="addNewQuote($event)"></app-quote-form>
+      </div>
+  </div>
+</div>
